@@ -1,0 +1,88 @@
+<h1>Angular Material / Reactive Form</h1>
+<div class="form-container">
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="userName" placeholder="Enter Text">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Enter Email">
+            <mat-error *ngIf="formdata.controls['email'].invalid && formdata.controls['email'].touched">
+                Email is required and must be valid email.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+            >
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <input matInput [type]="hide() ? 'password' : 'text'"  matInput formControlName="password" placeholder="Enter Password">
+            <mat-error *ngIf="formdata.controls['password'].invalid && formdata.controls['password'].touched">
+                Password is required and must be at least 8 characters long.
+            </mat-error>
+        </mat-form-field>
+
+        <div class="radio-group">
+            <label class="radio-label">Gender</label>
+            <mat-radio-group formControlName="gender" class="gender-radio-group">
+                <mat-radio-button value="male">Male</mat-radio-button>
+                <mat-radio-button value="female">Female</mat-radio-button>
+                <mat-radio-button value="other">Other</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" placeholder="Enter Address">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Birth Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="formdata.get('birthDate')?.hasError('required')">
+                Birth Date is required.
+            </mat-error>
+        </mat-form-field>
+
+        <div class="slidergroup">
+            <label class="slider-label">Angular Skill Level: {{ formdata.get('angularSkillLevel')?.value }}</label>
+            <mat-slider [min]="minSkillLevel" [max]="maxSkillLevel" step="1" [discrete]="true">
+                <input matSliderThumb formControlName="angularSkillLevel">
+            </mat-slider>
+        </div>
+
+        <mat-slide-toggle formControlName="acceptTerms">Accept Terms of Service</mat-slide-toggle>
+        <mat-error *ngIf="formdata.get('acceptTerms')?.hasError('required')">
+            Accepting Terms of Service is required.
+        </mat-error>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formdata.valid">
+            Click Here
+        </button>
+    </form>
+
+    
+
+    <p class='results' *ngIf="submitted">
+        you have entered: <br>
+        Username: {{ userName }} <br>
+        Email: {{ email }} <br>
+        Password: {{ password }} <br>
+        gender: {{ gender }} <br>
+        Address: {{ address }} <br>
+        Birth Date: {{ birthDate | date:'shortDate' }} <br>
+        Angular Skill Level: {{ angularSkillLevel }}
+    </p>
+</div>
+
