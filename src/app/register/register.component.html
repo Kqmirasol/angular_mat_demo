@@ -61,11 +61,14 @@
                 <input matSliderThumb formControlName="angularSkillLevel">
             </mat-slider>
         </div>
+        
+        <mat-divider></mat-divider>
 
         <mat-slide-toggle formControlName="acceptTerms">Accept Terms of Service</mat-slide-toggle>
         <mat-error *ngIf="formdata.get('acceptTerms')?.hasError('required')">
             Accepting Terms of Service is required.
         </mat-error>
+
 
         <button mat-raised-button color="primary" type="submit" [disabled]="!formdata.valid">
             Click Here

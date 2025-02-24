@@ -5,18 +5,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatIcon} from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { MatRippleModule } from '@angular/material/core';
+
+//new 3 components
+import { MatIcon} from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+
 
 
 @Component({
   selector: 'app-register',
-  imports: [ FormsModule, ReactiveFormsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSliderModule, MatSlideToggleModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIcon , CommonModule, MatRippleModule],
+  imports: [ FormsModule, ReactiveFormsModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSliderModule, MatSlideToggleModule, MatRadioModule, MatDividerModule,MatDatepickerModule, MatNativeDateModule, MatIcon , CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
